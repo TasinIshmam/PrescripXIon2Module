@@ -3,7 +3,6 @@ package com.prescripxion.www.prescripxion2module;
 /**
  * Created by Tasin Ishmam on 12/1/2017.
  */
-
 public class Medicine {
 
     private String Name;
