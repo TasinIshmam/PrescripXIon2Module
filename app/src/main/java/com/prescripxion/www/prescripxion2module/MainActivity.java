@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 
-///Checking If New Branch is Created or Not
+///Checking If New Branch is Created 
 
 public class MainActivity extends AppCompatActivity {
 
