@@ -14,27 +14,13 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <SearchView
-            android:id="@+id/search_view"
+
+        <ListView
+            android:id="@+id/listview_medicines"
             android:layout_width="match_parent"
-            android:layout_margin="10dp"
-            android:layout_height="wrap_content"
-
-
-
-            />
-
-        <ScrollView
-            android:id="@+id/scroll_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <!-- PUT THE SEARCH RESULT INSIDE HERE.
-             Make a child layout of the scrollview(It can
-             only have one child) and inside it put
-             necessary contents.-->
-        </ScrollView>
-
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
     <android.support.design.widget.BottomNavigationView

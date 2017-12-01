@@ -6,19 +6,14 @@ package com.prescripxion.www.prescripxion2module;
 public class Medicine {
 
     private String Name;
-    private String Manufacturer;
-    private int Price;
+    private double Price;
 
 
     public void setName(String name) {
         Name = name;
     }
 
-    public void setManufacturer(String manufacturer) {
-        Manufacturer = manufacturer;
-    }
-
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         Price = price;
     }
 
@@ -27,18 +22,14 @@ public class Medicine {
         return Name;
     }
 
-    public String getManufacturer() {
-        return Manufacturer;
-    }
-
-    public int getPrice() {
+    public double getPrice() {
         return Price;
     }
 
-    public Medicine(String name, String manufacturer, int price) {
+    public Medicine(String name, double price) {
 
         Name = name;
-        Manufacturer = manufacturer;
+
         Price = price;
     }
 }
