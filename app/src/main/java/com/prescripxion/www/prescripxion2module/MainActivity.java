@@ -10,15 +10,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import java.util.Arrays;
 
-import java.util.List;
-
-
-
 public class MainActivity extends AppCompatActivity {
 
-    final int NUMBER_OF_MEDICINES=5;
+    final int NUMBER_OF_MEDICINES=7;
     Medicine[] medList=new Medicine[NUMBER_OF_MEDICINES];
-    String[] medNamesData=new String[5];
+    String[] medNamesData=new String[NUMBER_OF_MEDICINES];
 
     private TextView mTextMessage;
 
@@ -31,11 +27,10 @@ public class MainActivity extends AppCompatActivity {
         ///ListView Codes:
         initialiseMeds(medList,medNamesData);
         ListView listViewMedicines=(ListView)findViewById(R.id.listview_medicines);
-
         ArrayAdapter medNameDataAdapter=new ArrayAdapter(MainActivity.this,android.R.layout.simple_list_item_1,medNamesData);
-
         listViewMedicines.setAdapter(medNameDataAdapter);
 
+        
 
         ///Bottom Navigation Bar Codes:
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -62,6 +57,14 @@ public class MainActivity extends AppCompatActivity {
 
         medList[4]=new Medicine("Galvus Met A",525.00);
         medNamesData[4]=medList[4].getName();
+
+        medList[5]=new Medicine("Benadryl",23.0);
+        medNamesData[5]=medList[5].getName();
+
+        medList[6]=new Medicine("Coversyl Plus",23.0);
+        medNamesData[6]=medList[6].getName();
+
+
 
         Arrays.sort(medNamesData);
 
