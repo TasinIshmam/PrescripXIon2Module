@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 import java.util.List;
 
-///Checking If New Branch is Created
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
-        
+
     }
 
 
