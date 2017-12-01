@@ -5,9 +5,13 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     final int NUMBER_OF_MEDICINES=7;
     Medicine[] medList=new Medicine[NUMBER_OF_MEDICINES];
     String[] medNamesData=new String[NUMBER_OF_MEDICINES];
+    Button buttonCart;
+
 
     private TextView mTextMessage;
 
@@ -24,17 +30,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         ///ListView Codes:
         initialiseMeds(medList,medNamesData);
-        ListView listViewMedicines=(ListView)findViewById(R.id.listview_medicines);
+        final ListView listViewMedicines=(ListView)findViewById(R.id.listview_medicines);
         ArrayAdapter medNameDataAdapter=new ArrayAdapter(MainActivity.this,android.R.layout.simple_list_item_1,medNamesData);
         listViewMedicines.setAdapter(medNameDataAdapter);
+        listViewMedicines.setVisibility(View.VISIBLE);
+        //TODO: Listview Items Need to be Slideable cards
+        //TODO: listView Will Be Visible Only if Click is Detected on SearchBar
 
-        
+        //SearchBar Codes Start here
+
+        //TODO: Searchbar Using Searchview and AutoCompletion
+
 
         ///Bottom Navigation Bar Codes:
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+        //AddtoCart Codes
+        //TODO:Cart Image Need to be Changed use:https://material.io/icons/
+        buttonCart=(Button)findViewById(R.id.button_cart);
+        buttonCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"No Items Added",Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
 
 
 

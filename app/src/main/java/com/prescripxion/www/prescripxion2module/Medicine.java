@@ -13,9 +13,7 @@ public class Medicine {
         Name = name;
     }
 
-    public void setPrice(double price) {
-        Price = price;
-    }
+    public void setPrice(double price) { Price = price; }
 
     public String getName() {
 

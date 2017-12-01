@@ -3,6 +3,6 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="my_medications">Medication</string>
-    <string name="my_profile">Profile</string>
+    <string name="my_medications">My Medications</string>
+    <string name="my_profile">My Profile</string>
 </resources>
