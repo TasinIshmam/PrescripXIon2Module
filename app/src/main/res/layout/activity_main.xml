@@ -12,16 +12,9 @@
     <RelativeLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="20dp"
         android:layout_weight="1">
 
-
-        <ListView
-            android:id="@+id/listview_medicines"
-            android:layout_width="match_parent"
-            android:layout_height="30mm"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/searchView" />
 
         <Button
             android:id="@+id/button_cart"
@@ -33,6 +26,7 @@
             android:background="@drawable/cart" />
 
         <TextView
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView"
@@ -40,10 +34,10 @@
             android:fontFamily="sans-serif-condensed"
             android:text="Check Out"
             android:textColor="@android:color/background_light"
-            android:textSize="12sp"
-            android:id="@+id/textView3" />
+            android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -51,17 +45,23 @@
             android:text="Module2"
             android:textColor="@android:color/white"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:id="@+id/textView" />
+            android:textStyle="bold" />
 
         <SearchView
+            android:id="@+id/searchView"
             android:layout_width="60mm"
             android:layout_height="8mm"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:id="@+id/searchView" />
+            android:orientation="horizontal" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/searchView" />
 
     </RelativeLayout>
 

@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Arrays;
@@ -20,9 +20,10 @@ public class MainActivity extends AppCompatActivity {
     Medicine[] medList=new Medicine[NUMBER_OF_MEDICINES];
     String[] medNamesData=new String[NUMBER_OF_MEDICINES];
     Button buttonCart;
-
-
     private TextView mTextMessage;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
 
     @Override
@@ -31,14 +32,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        ///ListView Codes:
+        ///RecyclerView Codes:
         initialiseMeds(medList,medNamesData);
-        final ListView listViewMedicines=(ListView)findViewById(R.id.listview_medicines);
-        ArrayAdapter medNameDataAdapter=new ArrayAdapter(MainActivity.this,android.R.layout.simple_list_item_1,medNamesData);
-        listViewMedicines.setAdapter(medNameDataAdapter);
-        listViewMedicines.setVisibility(View.VISIBLE);
-        //TODO: Listview Items Need to be Slideable cards
-        //TODO: listView Will Be Visible Only if Click is Detected on SearchBar
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new MyAdapter(medNamesData);
+        mRecyclerView.setAdapter(mAdapter);
+
+
+
+
+        //TODO: Recyclerview Items Need to be Slideable cards
+        //TODO: RecyclerView Will Be Visible Only if Click is Detected on SearchBar
 
         //SearchBar Codes Start here
 
@@ -91,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         medList[6]=new Medicine("Coversyl Plus",23.0);
         medNamesData[6]=medList[6].getName();
 
-
+        ///TODO: Add New Medicines to look for here.
 
         Arrays.sort(medNamesData);
 
