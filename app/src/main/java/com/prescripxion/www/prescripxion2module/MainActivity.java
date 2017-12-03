@@ -1,5 +1,6 @@
 package com.prescripxion.www.prescripxion2module;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,18 +13,32 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.InputStream;
 import java.util.Arrays;
+
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    final int NUMBER_OF_MEDICINES=7;
-    Medicine[] medList=new Medicine[NUMBER_OF_MEDICINES];
-    String[] medNamesData=new String[NUMBER_OF_MEDICINES];
+
     Button buttonCart;
+
     private TextView mTextMessage;
+    ///Declaration Of Recycler Variables
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    //Declaration of Medicine Variables
+    public static final int NUMBER_OF_MEDICINES=10;
+    public String[] medNamesData=new String[NUMBER_OF_MEDICINES];
+    public double[] medPriceData=new double[NUMBER_OF_MEDICINES];
+    View view;
+
 
 
     @Override
@@ -32,8 +47,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        //Reading Medicine Names From Excel File
+        getMedNamesData(view,medNamesData);
+        getMedPriceData(view,medPriceData);
+
+
         ///RecyclerView Codes:
-        initialiseMeds(medList,medNamesData);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -73,35 +92,71 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    private void initialiseMeds(Medicine [] medList,String[] medNamesData)
+    public void getMedNamesData(View view, String [] medNamesData)
     {
-        medList[0]=new Medicine("Ace",20.50);
-        medNamesData[0]=medList[0].getName();
 
-        medList[1]=new Medicine("Deslor",15.50);
-        medNamesData[1]=medList[1].getName();
+        try {
+            AssetManager am=getAssets();
+            InputStream is=am.open("new.xls");
+            Workbook workbook = Workbook.getWorkbook(is);
+            Sheet s=workbook.getSheet(0);
+            int row= s.getRows();
+            int col= s.getColumns();
 
-        medList[2]=new Medicine("Reservix",12.25);
-        medNamesData[2]=medList[2].getName();
+            for(int r = 0; r<row; r++)
+            {
 
-        medList[3]=new Medicine("Azmasol",230.25);
-        medNamesData[3]=medList[3].getName();
+                    Cell z=s.getCell(0,r);
+                    medNamesData[r]=z.getContents();
 
-        medList[4]=new Medicine("Galvus Met A",525.00);
-        medNamesData[4]=medList[4].getName();
 
-        medList[5]=new Medicine("Benadryl",23.0);
-        medNamesData[5]=medList[5].getName();
+            }
 
-        medList[6]=new Medicine("Coversyl Plus",23.0);
-        medNamesData[6]=medList[6].getName();
+            for(int r = 0; r<row; r++)
+            {
 
-        ///TODO: Add New Medicines to look for here.
+                Cell z=s.getCell(1,r);
+                medNamesData[r]+="--"+z.getContents();
 
-        Arrays.sort(medNamesData);
 
+            }
+
+
+
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getApplicationContext(),"No Xls File",Toast.LENGTH_LONG).show();
+        }
     }
+    public void getMedPriceData(View view, double [] medPriceData)
+    {
+
+        try {
+            AssetManager am=getAssets();
+            InputStream is=am.open("new.xls");
+            Workbook workbook = Workbook.getWorkbook(is);
+            Sheet s=workbook.getSheet(0);
+            int row= s.getRows();
+            int col= s.getColumns();
+            for(int r = 0; r<row; r++)
+            {
+                Cell z=s.getCell(2,r);
+                medPriceData[r]=Double.parseDouble(z.getContents());
+            }
+
+
+        }
+        catch (Exception e)
+        {
+             Toast.makeText(getApplicationContext(),"No Xls File",Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+
+
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
