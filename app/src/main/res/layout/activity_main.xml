@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/module2main"
+
     tools:context="com.prescripxion.www.prescripxion2module.MainActivity">
 
     <RelativeLayout
@@ -20,49 +20,33 @@
             android:id="@+id/button_cart"
             android:layout_width="6mm"
             android:layout_height="6mm"
+            android:layout_marginBottom="15dp"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="19dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="15dp"
             android:background="@drawable/cart" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/textView"
-            android:layout_toStartOf="@+id/button_cart"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Check Out"
-            android:textColor="@android:color/background_light"
-            android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:text="Module2"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+
 
         <SearchView
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView"
+            android:layout_alignParentTop="true"
+
             android:gravity="center"
             android:orientation="horizontal" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
-            android:layout_width="320dp"
-            android:layout_height="300dp"
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
             android:layout_below="@+id/searchView"
             android:layout_centerHorizontal="true"
-            android:background="#ffa081"
+            android:background="#ffd3d3"
             android:scrollbars="none"
             tools:listitem="@android:layout/simple_list_item_activated_1" />
 

@@ -3,13 +3,26 @@ package com.prescripxion.www.prescripxion2module;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements Filterable{
 
-    private ArrayList<String> mArrayListData, filteredList ;
+     ArrayList<String> mArrayListData, filterList ;
+     CustomFilter filter;
+
+    @Override
+    public Filter getFilter() {
+        if(filter==null)
+        {
+            filter=new CustomFilter(filterList,this);
+        }
+
+        return filter;
+    }
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -21,10 +34,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
 
-    public MyAdapter(ArrayList<String> rhs) {
+    public MyAdapter( ArrayList<String> rhs) {
 
 
-        mArrayListData = rhs;
+        this.mArrayListData = rhs;
+        this.filterList = rhs;
     }
 
 
@@ -47,7 +61,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
+
+        if(mArrayListData != null)
         return mArrayListData.size();
+
+        else return 0;
     }
+
+
 
 }

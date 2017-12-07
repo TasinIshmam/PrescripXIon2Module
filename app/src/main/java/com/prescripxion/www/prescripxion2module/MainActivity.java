@@ -8,9 +8,11 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.io.InputStream;
@@ -33,9 +35,10 @@ public class MainActivity extends AppCompatActivity {
     Button buttonCart;
     ///Declaration Of Recycler Variables;
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    public MyAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<String> mItems;
+    SearchView searchView;
 
     //Declaration of Medicine Variables:
     public static final int NUMBER_OF_MEDICINES=11;
@@ -56,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
         getMedNamesData(view,medNamesData);
         getMedPriceData(view,medPriceData);
         //AddtoCart Codes
+
+        Log.e( "TAG" , "herro there" );
+
 
         buttonCart=(Button)findViewById(R.id.button_cart);
         buttonCart.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
         }
         mAdapter = new MyAdapter(mArrayListData);
         mRecyclerView.setAdapter(mAdapter);
+
+
 
 
 
@@ -134,6 +142,24 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.addOnItemTouchListener(swipeTouchListener);
 
         //SearchBar Codes Start here
+
+        searchView = (SearchView) findViewById(R.id.searchView);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String query) {
+                Log.e( "TAG" , "Inside the fucking querytextchange");
+
+                mAdapter.getFilter().filter(query);
+                return false;
+            }
+        });
+
+
 
         //TODO: Searchbar Using Searchview and AutoCompletion
 
