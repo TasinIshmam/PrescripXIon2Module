@@ -1,5 +1,6 @@
 package com.prescripxion.www.prescripxion2module;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,42 +15,73 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+//For Excel Reading
 import java.io.InputStream;
 import java.util.Arrays;
-
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
+//For Card View
+import s.ashiqur.lib.SwipeableRecyclerViewTouchListener;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 public class MainActivity extends AppCompatActivity {
 
 
+    //CardView Codes:
     Button buttonCart;
-
-    private TextView mTextMessage;
-    ///Declaration Of Recycler Variables
+    ///Declaration Of Recycler Variables;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ArrayList<String> mItems;
 
-    //Declaration of Medicine Variables
-    public static final int NUMBER_OF_MEDICINES=10;
+    //Declaration of Medicine Variables:
+    public static final int NUMBER_OF_MEDICINES=11;
     public String[] medNamesData=new String[NUMBER_OF_MEDICINES];
     public double[] medPriceData=new double[NUMBER_OF_MEDICINES];
+    public static String[] addedToCart=new String[NUMBER_OF_MEDICINES];
     View view;
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         //Reading Medicine Names From Excel File
         getMedNamesData(view,medNamesData);
         getMedPriceData(view,medPriceData);
+        //AddtoCart Codes
+
+        buttonCart=(Button)findViewById(R.id.button_cart);
+        buttonCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intentCart = new Intent(MainActivity.this, CartActivity.class);
+                startActivity(intentCart);
+
+
+            }
+        });
 
 
         ///RecyclerView Codes:
@@ -61,9 +93,48 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-        //TODO: Recyclerview Items Need to be Slideable cards
         //TODO: RecyclerView Will Be Visible Only if Click is Detected on SearchBar
+        mItems = new ArrayList<>(30);
+        for (int i = 0; i < 30; i++) {
+            mItems.add(String.format("Card number %02d", i));
+        }
+        SwipeableRecyclerViewTouchListener swipeTouchListener =
+                new SwipeableRecyclerViewTouchListener(mRecyclerView,
+                        new SwipeableRecyclerViewTouchListener.SwipeListener() {
+                            @Override
+                            public boolean canSwipeLeft(int position) {
+                                return true;
+                            }
+
+                            @Override
+                            public boolean canSwipeRight(int position) {
+                                return true;
+                            }
+
+                            @Override
+                            public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+                                    mItems.remove(position);
+                                    mAdapter.notifyItemRemoved(position);
+                                    addedToCart[position]=null;
+                                }
+                                mAdapter.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+                                    mItems.remove(position);
+                                    mAdapter.notifyItemRemoved(position);
+                                   addedToCart[position]=medNamesData[position];
+
+
+                                }
+                                mAdapter.notifyDataSetChanged();
+                            }
+                        });
+
+        mRecyclerView.addOnItemTouchListener(swipeTouchListener);
 
         //SearchBar Codes Start here
 
@@ -73,19 +144,6 @@ public class MainActivity extends AppCompatActivity {
         ///Bottom Navigation Bar Codes:
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
-        //AddtoCart Codes
-        //TODO:Cart Image Need to be Changed use:https://material.io/icons/
-        buttonCart=(Button)findViewById(R.id.button_cart);
-        buttonCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"No Items Added",Toast.LENGTH_LONG).show();
-            }
-        });
-
-
 
 
 
@@ -114,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
 
             for(int r = 0; r<row; r++)
             {
+                //Retreives Med Power
 
                 Cell z=s.getCell(1,r);
                 medNamesData[r]+="--"+z.getContents();

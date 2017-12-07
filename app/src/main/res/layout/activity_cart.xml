@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/module2main"
+    tools:context="com.prescripxion.www.prescripxion2module.Cart">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="18mm"
+        android:layout_height="18mm"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/carticon" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:fontFamily="casual"
+        android:text="Cart"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        android:textSize="5mm"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonDelivery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="19dp"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:text="Pay On\nDelivery"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="2mm" />
+
+    <Button
+        android:id="@+id/buttonBkash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/imageView"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:gravity="center"
+        android:text="Pay Via\nBkash"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="2mm" />
+
+    <Button
+        android:id="@+id/buttonOnline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonBkash"
+        android:layout_alignBottom="@+id/buttonBkash"
+        android:layout_marginStart="19dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:text="Pay\nOnline"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="2mm" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerCart"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:background="#ffa081"
+        tools:listitem="@android:layout/simple_list_item_2" />
+</RelativeLayout>
