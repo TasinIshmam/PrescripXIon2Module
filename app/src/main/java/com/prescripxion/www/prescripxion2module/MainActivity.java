@@ -11,33 +11,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-//For Excel Reading
 import java.io.InputStream;
-import java.util.Arrays;
+import java.util.ArrayList;
+
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
-//For Card View
 import s.ashiqur.lib.SwipeableRecyclerViewTouchListener;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-
-
-
-import java.util.ArrayList;
-import java.util.List;
-
-import java.util.ArrayList;
-import java.util.List;
+//For Excel Reading
+//For Card View
 
 
 
@@ -57,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public String[] medNamesData=new String[NUMBER_OF_MEDICINES];
     public double[] medPriceData=new double[NUMBER_OF_MEDICINES];
     public static String[] addedToCart=new String[NUMBER_OF_MEDICINES];
+    ArrayList<String> mArrayListData = new ArrayList<String>();
     View view;
 
 
@@ -88,7 +74,17 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new MyAdapter(medNamesData);
+
+
+
+        for( String e : medNamesData)
+        {
+            if(e != null)
+            {
+                mArrayListData.add(e);
+            }
+        }
+        mAdapter = new MyAdapter(mArrayListData);
         mRecyclerView.setAdapter(mAdapter);
 
 

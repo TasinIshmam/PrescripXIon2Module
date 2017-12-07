@@ -1,12 +1,11 @@
 package com.prescripxion.www.prescripxion2module;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
-import static com.prescripxion.www.prescripxion2module.MainActivity.addedToCart;
+import java.util.ArrayList;
 
 public class CartActivity extends AppCompatActivity {
 
@@ -15,6 +14,7 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView cartRecyclerView;
     private RecyclerView.Adapter cartAdapter;
     private RecyclerView.LayoutManager cartLayoutManager;
+    ArrayList<String> mArrayListData = new ArrayList<String>();
 
     String [] addedTo=new String[10];
 
@@ -38,7 +38,18 @@ public class CartActivity extends AppCompatActivity {
             }
 
         }
-        cartAdapter = new MyAdapter(addedTo);
+
+
+
+        for( String e : addedTo)
+        {
+            if(e != null)
+            {
+                mArrayListData.add(e);
+            }
+        }
+        cartAdapter = new MyAdapter(mArrayListData);
+
         cartRecyclerView.setAdapter(cartAdapter);
 
 
