@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //TODO: RecyclerView Will Be Visible Only if Click is Detected on SearchBar
+        //TODO: Change Recycler View Bg Color If Needed
         mItems = new ArrayList<>(30);
         for (int i = 0; i < 30; i++) {
             mItems.add(String.format("Card number %02d", i));
