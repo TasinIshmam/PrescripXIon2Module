@@ -57,7 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mTextView.setText(mArrayListData.get(position));
-        
+
     }
 
     @Override
