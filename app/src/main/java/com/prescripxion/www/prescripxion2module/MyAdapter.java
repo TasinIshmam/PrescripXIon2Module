@@ -64,6 +64,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
     public int getItemCount() {
 
         if(mArrayListData != null)
+
             
         return mArrayListData.size();
 
