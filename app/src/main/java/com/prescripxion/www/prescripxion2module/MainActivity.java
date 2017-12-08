@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                                 for (int position : reverseSortedPositions) {
                                     mItems.remove(position);
                                     mAdapter.notifyItemRemoved(position);
-                                   addedToCart[position]=mAdapter.filterList.get(position);
+                                   addedToCart[position]=mAdapter.mArrayListData.get(position);
 
 
                                 }
