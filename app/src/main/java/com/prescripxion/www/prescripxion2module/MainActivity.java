@@ -8,7 +8,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         getMedPriceData(view,medPriceData);
         //AddtoCart Codes
 
-        Log.e( "TAG" , "herro there" );
+
 
 
         buttonCart=(Button)findViewById(R.id.button_cart);
@@ -152,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public boolean onQueryTextChange(String query) {
-                Log.e( "TAG" , "Inside the fucking querytextchange");
+
 
                 mAdapter.getFilter().filter(query);
                 return false;

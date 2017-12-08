@@ -1,12 +1,11 @@
 package com.prescripxion.www.prescripxion2module;
 
-import android.util.Log;
 import android.widget.Filter;
 
 import java.util.ArrayList;
 
 /**
- * Created by hp on 12/8/2017.
+ * Created by Tasin Ishmam on 11/8/2017.
  */
 
 
@@ -25,9 +24,9 @@ public class CustomFilter extends Filter{
         FilterResults results=new FilterResults();
         //CHECK CONSTRAINT VALIDITY
 
-        String temp = Integer.toString(filterList.size());
+        
 
-        Log.e( "TAG" , "Inside the fucking filter");
+       // Log.e( "TAG" , "Inside the fucking filter, Alhamdulillah for everything");
 
 
         if(constraint != null && constraint.length() > 0)

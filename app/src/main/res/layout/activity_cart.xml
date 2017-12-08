@@ -78,6 +78,6 @@
         android:layout_height="280dp"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:background="#ffa081"
+        android:background="#ffd3d3"
         tools:listitem="@android:layout/simple_list_item_2" />
 </RelativeLayout>
