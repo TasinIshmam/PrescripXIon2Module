@@ -24,7 +24,7 @@ public class CustomFilter extends Filter{
         FilterResults results=new FilterResults();
         //CHECK CONSTRAINT VALIDITY
 
-        
+
 
        // Log.e( "TAG" , "Inside the fucking filter, Alhamdulillah for everything");
 

@@ -29,25 +29,20 @@ public class CartActivity extends AppCompatActivity {
         cartRecyclerView.setLayoutManager(cartLayoutManager);
         //TODO : Only Add Searched Indexed Strings From Xl file to The Recyler View of Cart
         int i=0;
+
+
         for(String s: MainActivity.addedToCart)
         {
             if(s!= null)
             {
-                addedTo[i]=s;
-                ++i;
+                mArrayListData.add(s);
             }
 
         }
 
 
 
-        for( String e : addedTo)
-        {
-            if(e != null)
-            {
-                mArrayListData.add(e);
-            }
-        }
+
         cartAdapter = new MyAdapter(mArrayListData);
 
         cartRecyclerView.setAdapter(cartAdapter);
