@@ -65,7 +65,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
         if(mArrayListData != null)
 
-            
+
         return mArrayListData.size();
 
         else return 0;
