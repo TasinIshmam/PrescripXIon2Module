@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int NUMBER_OF_MEDICINES=11;
     public String[] medNamesData=new String[NUMBER_OF_MEDICINES];
     public double[] medPriceData=new double[NUMBER_OF_MEDICINES];
-    public static String[] addedToCart=new String[NUMBER_OF_MEDICINES];
+    public static ArrayList<String> addedToCart = new ArrayList<String>();
     ArrayList<String> mArrayListData = new ArrayList<String>();
     View view;
 
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                                 for (int position : reverseSortedPositions) {
                                     mItems.remove(position);
                                     mAdapter.notifyItemRemoved(position);
-                                    addedToCart[position]=null;
+                                    addedToCart.remove(mAdapter.mArrayListData.get(position));
                                 }
                                 mAdapter.notifyDataSetChanged();
                             }
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                                 for (int position : reverseSortedPositions) {
                                     mItems.remove(position);
                                     mAdapter.notifyItemRemoved(position);
-                                   addedToCart[position]=mAdapter.mArrayListData.get(position);
+                                   addedToCart.add(mAdapter.mArrayListData.get(position));
 
 
                                 }
