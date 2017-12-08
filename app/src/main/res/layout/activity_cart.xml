@@ -74,9 +74,10 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerCart"
-        android:layout_width="280dp"
-        android:layout_height="280dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
+        android:layout_above="@+id/buttonBkash"
         android:layout_centerHorizontal="true"
         android:background="#ffd3d3"
         tools:listitem="@android:layout/simple_list_item_2" />
