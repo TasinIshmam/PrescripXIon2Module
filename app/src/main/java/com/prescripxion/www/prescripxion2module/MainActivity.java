@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Declaration of Medicine Variables:
     public static final int NUMBER_OF_MEDICINES=11;
-    public String[] medNamesData=new String[NUMBER_OF_MEDICINES];
-    public double[] medPriceData=new double[NUMBER_OF_MEDICINES];
+
+    public Medicine[] medicines = new Medicine[NUMBER_OF_MEDICINES];
     public static ArrayList<String> addedToCart = new ArrayList<String>();
     ArrayList<String> mArrayListData = new ArrayList<String>();
     View view;
@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Reading Medicine Names From Excel File
-        getMedNamesData(view,medNamesData);
-        getMedPriceData(view,medPriceData);
+        getMedNamesData(view);
+
         //AddtoCart Codes
 
 
@@ -81,11 +81,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        for( String e : medNamesData)
+        for( Medicine e : medicines)
         {
             if(e != null)
             {
-                mArrayListData.add(e);
+                mArrayListData.add(e.getName());
             }
         }
         mAdapter = new MyAdapter(mArrayListData);
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                                 for (int position : reverseSortedPositions) {
                                     mItems.remove(position);
                                     mAdapter.notifyItemRemoved(position);
-                                   addedToCart.add(mAdapter.mArrayListData.get(position));
+                                    addedToCart.add(mAdapter.mArrayListData.get(position));
 
 
                                 }
@@ -179,8 +179,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-       cartmenu = menu.findItem(R.id.button_checkout);
-       cameramenu = menu.findItem(R.id.button_camera);
+        cartmenu = menu.findItem(R.id.button_checkout);
+        cameramenu = menu.findItem(R.id.button_camera);
 
 
 
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void getMedNamesData(View view, String [] medNamesData)
+    public void getMedNamesData(View view)
     {
 
         try {
@@ -233,21 +233,22 @@ public class MainActivity extends AppCompatActivity {
             int row= s.getRows();
             int col= s.getColumns();
 
-            for(int r = 0; r<row; r++)
+            for(int r = 0; r < row; r++)
             {
 
-                    Cell z=s.getCell(0,r);
-                    medNamesData[r]=z.getContents();
+                Cell temp1=s.getCell(0,r);
+                Cell temp2=s.getCell(1,r);
+                Cell temp3=s.getCell(2,r);
+
+               String name = temp1.getContents();
+               String details = temp2.getContents();
+               Double price = Double.parseDouble(temp3.getContents());
+
+               Medicine temp = new Medicine(name, details, price);
 
 
-            }
+               medicines[r] = temp;
 
-            for(int r = 0; r<row; r++)
-            {
-                //Retreives Med Power
-
-                Cell z=s.getCell(1,r);
-                medNamesData[r]+="--"+z.getContents();
 
 
             }
@@ -260,29 +261,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"No Xls File",Toast.LENGTH_LONG).show();
         }
     }
-    public void getMedPriceData(View view, double [] medPriceData)
-    {
 
-        try {
-            AssetManager am=getAssets();
-            InputStream is=am.open("new.xls");
-            Workbook workbook = Workbook.getWorkbook(is);
-            Sheet s=workbook.getSheet(0);
-            int row= s.getRows();
-            int col= s.getColumns();
-            for(int r = 0; r<row; r++)
-            {
-                Cell z=s.getCell(2,r);
-                medPriceData[r]=Double.parseDouble(z.getContents());
-            }
-
-
-        }
-        catch (Exception e)
-        {
-             Toast.makeText(getApplicationContext(),"No Xls File",Toast.LENGTH_LONG).show();
-        }
-    }
 
 
 
