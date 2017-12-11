@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> mItems;
     SearchView searchView;
     MenuItem cartmenu, cameramenu;
+    
 
     //Declaration of Medicine Variables:
     public static final int NUMBER_OF_MEDICINES=11;
