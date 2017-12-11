@@ -8,6 +8,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<String> mItems;
     SearchView searchView;
+    MenuItem cartmenu, cameramenu;
 
     //Declaration of Medicine Variables:
     public static final int NUMBER_OF_MEDICINES=11;
@@ -60,19 +63,14 @@ public class MainActivity extends AppCompatActivity {
         //AddtoCart Codes
 
 
+        //adding toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
-        buttonCart=(Button)findViewById(R.id.button_cart);
-        buttonCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intentCart = new Intent(MainActivity.this, CartActivity.class);
-                startActivity(intentCart);
 
 
-            }
-        });
 
 
         ///RecyclerView Codes:
@@ -170,6 +168,57 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.actionbar_buttons, menu);
+
+
+
+       cartmenu = menu.findItem(R.id.button_checkout);
+       cameramenu = menu.findItem(R.id.button_camera);
+
+
+
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+
+
+        //noinspection SimplifiableIfStatement
+        switch (item.getItemId())
+        {
+            case R.id.button_checkout:{
+                Intent intentCart = new Intent(MainActivity.this, CartActivity.class);
+                startActivity(intentCart);
+            }
+
+            case R.id.button_camera: {
+                //add camera actiivity creation code here.
+            }
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void getMedNamesData(View view, String [] medNamesData)

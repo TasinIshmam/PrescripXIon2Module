@@ -6,4 +6,6 @@
     <string name="my_medications">My Medications</string>
     <string name="my_profile">My Profile</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="checkout">Checkout</string>
+    <string name="camera">Camera</string>
 </resources>
