@@ -60,7 +60,7 @@ public class CustomFilter extends Filter{
     @Override
     protected void publishResults(CharSequence constraint, FilterResults results) {
         adapter.mArrayListData = (ArrayList<String>) results.values;
-        //REFRESH
+
         adapter.notifyDataSetChanged();
     }
 }

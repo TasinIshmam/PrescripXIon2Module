@@ -1,14 +1,12 @@
 package com.prescripxion.www.prescripxion2module;
 
 /**
- * Created by hp on 12/12/2017.
+ * Created by Tasin Ishmam on 12/12/2017.
  */
 
 import android.widget.Filter;
 import java.util.ArrayList;
-/**
- * Created by Hp on 3/17/2016.
- */
+
 public class NewCustomFilter extends Filter{
     MyMainAdapter adapter;
     ArrayList<Medicine> filterList;
@@ -51,6 +49,8 @@ public class NewCustomFilter extends Filter{
     @Override
     protected void publishResults(CharSequence constraint, FilterResults results) {
         adapter.medicineList= (ArrayList<Medicine>) results.values;
+        adapter.refresh();
+
         //REFRESH
         adapter.notifyDataSetChanged();
     }

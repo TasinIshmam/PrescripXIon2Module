@@ -1,5 +1,7 @@
 package com.prescripxion.www.prescripxion2module;
-
+/**
+ * Created by Tasin Ishmam on 12/12/2017.
+ */
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,25 +12,31 @@ import android.widget.Filter;
 import android.widget.Filterable;
 
 import java.util.ArrayList;
-/**
- * Created by Hp on 3/17/2016.
- */
+
 public class MyMainAdapter extends RecyclerView.Adapter<MyHolder> implements Filterable{
     Context c;
+    ClickListener listener;
     ArrayList<Medicine> medicineList ,filterList;
     NewCustomFilter filter;
-    public MyMainAdapter(Context ctx,ArrayList<Medicine> medicineList)
+    DataTransferInterface dtInterface;
+
+
+
+    public MyMainAdapter(Context ctx, ArrayList<Medicine> medicineList,  DataTransferInterface dtInterface, ClickListener listener)
     {
         this.c=ctx;
+        this.listener = listener;
         this.medicineList=medicineList;
         this.filterList=medicineList;
+        this.dtInterface = dtInterface;
+        dtInterface.setValues(medicineList);
     }
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //CONVERT XML TO VIEW ONBJ
+
         View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.model,null);
         //HOLDER
-        MyHolder holder=new MyHolder(v);
+        MyHolder holder=new MyHolder(v, listener);
         return holder;
     }
     //DATA BOUND TO VIEWS
@@ -41,7 +49,8 @@ public class MyMainAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
         //IMPLEMENT CLICK LISTENET
 
     }
-    //GET TOTAL NUM OF PLAYERS
+
+
     @Override
     public int getItemCount() {
         return medicineList.size();
@@ -53,6 +62,12 @@ public class MyMainAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
         {
             filter=new NewCustomFilter(filterList,this);
         }
+
+        
         return filter;
+    }
+
+    public void refresh() {
+        dtInterface.setValues(medicineList);
     }
 }

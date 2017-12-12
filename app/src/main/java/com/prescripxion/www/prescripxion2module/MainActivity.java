@@ -28,7 +28,7 @@ import jxl.Workbook;
 
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DataTransferInterface {
 
 
     //CardView Codes:
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public MyMainAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<String> mItems;
+    private  ArrayList<Medicine> currentFilteredState;
     SearchView searchView;
     MenuItem cartmenu, cameramenu;
 
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     public Medicine[] medicines = new Medicine[NUMBER_OF_MEDICINES];
     public static ArrayList<String> addedToCart = new ArrayList<String>();
+    int a = 3;
     ArrayList<Medicine> mArrayListData = new ArrayList<Medicine>();
     View view;
 
@@ -88,57 +90,24 @@ public class MainActivity extends AppCompatActivity {
                 mArrayListData.add(e);
             }
         }
-        mAdapter = new MyMainAdapter(this,    mArrayListData);
+        mAdapter = new MyMainAdapter(this, mArrayListData, this ,  new ClickListener() {
+            @Override
+            public void onPositionClicked(int position) {
+
+
+
+
+                Toast.makeText(getApplicationContext(),currentFilteredState.get(position).getName() ,Toast.LENGTH_SHORT).show();
+
+            }
+        } );
         mRecyclerView.setAdapter(mAdapter);
 
 
 
 
 
-        /*//TODO: RecyclerView Will Be Visible Only if Click is Detected on SearchBar
-        //TODO: Change Recycler View Bg Color If Needed(I Suck At Colors :3 )
-        mItems = new ArrayList<>(30);
-        for (int i = 0; i < 30; i++) {
-            mItems.add(String.format("Card number %02d", i));
-        }
-        SwipeableRecyclerViewTouchListener swipeTouchListener =
-                new SwipeableRecyclerViewTouchListener(mRecyclerView,
-                        new SwipeableRecyclerViewTouchListener.SwipeListener() {
-                            @Override
-                            public boolean canSwipeLeft(int position) {
-                                return true;
-                            }
 
-                            @Override
-                            public boolean canSwipeRight(int position) {
-                                return true;
-                            }
-
-                            @Override
-                            public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {
-                                for (int position : reverseSortedPositions) {
-                                    mItems.remove(position);
-                                    mAdapter.notifyItemRemoved(position);
-                                    addedToCart.remove(mAdapter.mArrayListData.get(position));
-                                }
-                                mAdapter.notifyDataSetChanged();
-                            }
-
-                            @Override
-                            public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {
-                                for (int position : reverseSortedPositions) {
-                                    mItems.remove(position);
-                                    mAdapter.notifyItemRemoved(position);
-                                    addedToCart.add(mAdapter.mArrayListData.get(position));
-
-
-                                }
-                                mAdapter.notifyDataSetChanged();
-                            }
-                        });
-
-        mRecyclerView.addOnItemTouchListener(swipeTouchListener);
-*/
         //SearchBar Codes Start here
 
         searchView = (SearchView) findViewById(R.id.searchView);
@@ -170,6 +139,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 
 
     @Override
@@ -290,5 +261,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
-
+    @Override
+    public void setValues(ArrayList<Medicine> dataList) {
+        currentFilteredState = dataList;
+    }
 }
