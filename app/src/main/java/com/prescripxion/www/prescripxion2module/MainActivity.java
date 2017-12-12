@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
-
 import android.widget.Toast;
 
 import java.io.InputStream;
@@ -23,7 +22,6 @@ import java.util.ArrayList;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
-import s.ashiqur.lib.SwipeableRecyclerViewTouchListener;
 
 //For Excel Reading
 //For Card View
@@ -96,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //TODO: RecyclerView Will Be Visible Only if Click is Detected on SearchBar
+        /*//TODO: RecyclerView Will Be Visible Only if Click is Detected on SearchBar
         //TODO: Change Recycler View Bg Color If Needed(I Suck At Colors :3 )
         mItems = new ArrayList<>(30);
         for (int i = 0; i < 30; i++) {
@@ -139,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                         });
 
         mRecyclerView.addOnItemTouchListener(swipeTouchListener);
-
+*/
         //SearchBar Codes Start here
 
         searchView = (SearchView) findViewById(R.id.searchView);
