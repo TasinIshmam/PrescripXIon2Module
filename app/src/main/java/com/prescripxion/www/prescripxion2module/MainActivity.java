@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonCart;
     ///Declaration Of Recycler Variables;
     private RecyclerView mRecyclerView;
-    public MyAdapter mAdapter;
+    public MyMainAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<String> mItems;
     SearchView searchView;
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     public Medicine[] medicines = new Medicine[NUMBER_OF_MEDICINES];
     public static ArrayList<String> addedToCart = new ArrayList<String>();
-    ArrayList<String> mArrayListData = new ArrayList<String>();
+    ArrayList<Medicine> mArrayListData = new ArrayList<Medicine>();
     View view;
 
 
@@ -80,14 +80,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         for( Medicine e : medicines)
         {
             if(e != null)
             {
-                mArrayListData.add(e.getName());
+                mArrayListData.add(e);
             }
         }
-        mAdapter = new MyAdapter(mArrayListData);
+        mAdapter = new MyMainAdapter(this,    mArrayListData);
         mRecyclerView.setAdapter(mAdapter);
 
 
