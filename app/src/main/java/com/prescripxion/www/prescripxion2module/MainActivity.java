@@ -1,5 +1,6 @@
 package com.prescripxion.www.prescripxion2module;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
@@ -28,7 +29,7 @@ import jxl.Workbook;
 
 
 
-public class MainActivity extends AppCompatActivity implements DataTransferInterface {
+public class MainActivity extends AppCompatActivity implements DataTransferInterface, PurchaseDialog.FragmentDataTransferInterface {
 
 
     //CardView Codes:
@@ -95,9 +96,12 @@ public class MainActivity extends AppCompatActivity implements DataTransferInter
             public void onPositionClicked(int position) {
 
 
+                FragmentManager manager = getFragmentManager();
+                PurchaseDialog purchaseDialog = new PurchaseDialog();
 
+                purchaseDialog.show(manager, "TAG");
 
-                Toast.makeText(getApplicationContext(),currentFilteredState.get(position).getName() ,Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(),currentFilteredState.get(position).getName() ,Toast.LENGTH_SHORT).show();
 
             }
         } );
@@ -264,5 +268,11 @@ public class MainActivity extends AppCompatActivity implements DataTransferInter
     @Override
     public void setValues(ArrayList<Medicine> dataList) {
         currentFilteredState = dataList;
+    }
+
+    @Override
+    public void onPurchaseConfirm(String message) {
+        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+
     }
 }

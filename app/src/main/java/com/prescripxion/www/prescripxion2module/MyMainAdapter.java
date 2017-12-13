@@ -63,7 +63,7 @@ public class MyMainAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
             filter=new NewCustomFilter(filterList,this);
         }
 
-        
+
         return filter;
     }
 

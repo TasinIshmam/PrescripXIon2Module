@@ -41,7 +41,7 @@ public class CustomFilter extends Filter{
             {
                 //CHECK
 
-                if(filterList.get(i).toUpperCase().contains(constraint))
+                if(filterList.get(i).toUpperCase().contains(constraint) )
                 {
 
                     //ADD PLAYER TO FILTERED PLAYERS

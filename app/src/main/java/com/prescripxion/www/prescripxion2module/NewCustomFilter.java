@@ -31,7 +31,7 @@ public class NewCustomFilter extends Filter{
             for (int i=0;i<filterList.size();i++)
             {
                 //CHECK
-                if(filterList.get(i).getName().toUpperCase().contains(constraint))
+                if(filterList.get(i).getName().toUpperCase().contains(constraint) || filterList.get(i).getDetails().toUpperCase().contains(constraint))
                 {
                     //ADD Medicine TO FILTERED MedicineS
                     filteredMedicines.add(filterList.get(i));
