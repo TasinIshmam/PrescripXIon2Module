@@ -8,66 +8,120 @@
 
     tools:context="com.prescripxion.www.prescripxion2module.CartActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="18mm"
-        android:layout_height="18mm"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/carticon" />
-
-
-
-    <Button
-        android:id="@+id/buttonDelivery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="19dp"
-        android:backgroundTint="@android:color/holo_red_light"
-        android:text="Pay On\nDelivery"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textSize="2mm" />
-
-    <Button
-        android:id="@+id/buttonBkash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/imageView"
-        android:backgroundTint="@android:color/holo_red_light"
-        android:textColor="#ffffff"
-        android:gravity="center"
-        android:text="Pay Via\nBkash"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="2mm" />
-
-    <Button
-        android:id="@+id/buttonOnline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/buttonBkash"
-        android:layout_alignBottom="@+id/buttonBkash"
-        android:layout_marginStart="19dp"
-        android:textColor="#ffffff"
-
-        android:layout_toEndOf="@+id/imageView"
-        android:backgroundTint="@android:color/holo_red_light"
-        android:text="Pay\nOnline"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="2mm" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerCart"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
-        android:layout_above="@+id/buttonBkash"
-        android:layout_centerHorizontal="true"
-        android:background="#ffffff"
-        tools:listitem="@android:layout/simple_list_item_2" />
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/purchase_buttons_layout"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:padding="10dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+
+            android:layout_height="wrap_content"
+            android:text="Check Out" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginStart="5dp"
+                android:textSize="17sp"
+                android:id="@+id/cartItemSelectedTextView"
+                android:text="Items Selected: 0"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+
+                android:textSize="17sp"
+                android:textAlignment="textEnd"
+                android:id="@+id/cartTotalPriceTextView"
+                android:layout_marginEnd="5dp"
+                android:text="Price: 0 "/>
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:background="#ffffff"
+
+            tools:listitem="@android:layout/simple_list_item_2" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/purchase_buttons_layout"
+
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/buttonDelivery"
+            
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:text="Pay On\nDelivery"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/buttonBkash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:textColor="#000000"
+            android:gravity="center"
+            android:text="Pay Via\nBkash"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/buttonOnline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:textColor="#000000"
+
+            android:layout_toEndOf="@+id/imageView"
+            android:text="Pay\nOnline"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="13sp" />
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
 </RelativeLayout>

@@ -15,18 +15,18 @@ import java.util.ArrayList;
  */
 
 
-public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
+public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> implements View.OnClickListener{
     Context c;
-    ClickListener listener;
+
     ArrayList<MyPair> medicineList;
 
 
 
 
-    public CartAdapter(Context ctx,  ArrayList< MyPair > medicineList,  ClickListener listener)
+    public CartAdapter(Context ctx,  ArrayList< MyPair > medicineList)
     {
         this.c=ctx;
-        this.listener = listener;
+
         this.medicineList=medicineList;
 
 
@@ -36,8 +36,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
     public CartViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_card_model,null);
-        //HOLDER
-        CartViewHolder holder=new CartViewHolder(v, listener);
+
+        CartViewHolder holder=new CartViewHolder(v);
+        holder.itemCancelButton.setTag(holder);
+        holder.itemCancelButton.setOnClickListener(this);
         return holder;
     }
 
@@ -75,7 +77,31 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
     public int getItemCount() {
         return medicineList.size();
     }
-    //RETURN FILTER OBJ
+
+    @Override
+    public void onClick(View view) {
+CartViewHolder holder = (CartViewHolder) view.getTag();
+
+        if(view.getId() == holder.itemCancelButton.getId())
+        {
+            removeItemAt(holder.getAdapterPosition());
+
+        }
+    }
+
+    private void removeItemAt(int position) {
+        medicineList.remove(position);
+        this.notifyItemRemoved(position);
+        this.notifyItemRangeChanged(position, medicineList.size());
+        ((CartAdapterDataTransferInterface)c).onCartDataChanged( medicineList);
+    }
+
+
+
+    interface CartAdapterDataTransferInterface
+    {
+        public void onCartDataChanged(ArrayList<MyPair> updatedCartArrayList);
+    }
 
 
 }

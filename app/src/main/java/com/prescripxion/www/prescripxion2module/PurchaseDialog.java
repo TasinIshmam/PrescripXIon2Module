@@ -24,6 +24,7 @@ public class PurchaseDialog extends DialogFragment implements View.OnClickListen
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.dialog_cancel_button) {
+
             dismiss();
         }
         else if(view.getId() == R.id.dialog_confirm_buttom){
@@ -33,18 +34,22 @@ public class PurchaseDialog extends DialogFragment implements View.OnClickListen
         else if(view.getId() == R.id.dialog_add){
             int temp = Integer.parseInt(amount.getText().toString());
             temp++;
+
+
+
             amount.setText(Integer.toString(temp));
 
         }
 
-        else if(view.getId() == R.id.dialog_add){
+        else if(view.getId() == R.id.dialog_subtract){
             int temp = Integer.parseInt(amount.getText().toString());
 
-            if(temp > 0) {
-                temp--;
-                amount.setText(Integer.toString(temp));
-            }
 
+                if(temp > 0) {
+                    temp--;
+                    amount.setText(Integer.toString(temp));
+
+                }
         }
     }
 
@@ -63,7 +68,8 @@ public class PurchaseDialog extends DialogFragment implements View.OnClickListen
         subtract = (Button) view.findViewById(R.id.dialog_subtract);
 
 
-
+        add.setOnClickListener(this);
+        subtract.setOnClickListener(this);
         cancel.setOnClickListener(this);
         confirm.setOnClickListener(this);
 

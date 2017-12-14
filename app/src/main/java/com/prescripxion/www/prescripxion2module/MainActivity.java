@@ -20,6 +20,7 @@ import android.widget.Toast;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.TreeMap;
 
 import jxl.Cell;
@@ -53,6 +54,15 @@ public class MainActivity extends AppCompatActivity implements DataTransferInter
 
     View view;
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        currentCartSelection = new TreeMap<Medicine, Integer> ((HashMap<Medicine , Integer>) data.getSerializableExtra("updatedAddedToCartMap"));
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
