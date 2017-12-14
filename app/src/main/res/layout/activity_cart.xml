@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:theme="@style/AppTheme"
 
-    tools:context="com.prescripxion.www.prescripxion2module.Cart">
+    tools:context="com.prescripxion.www.prescripxion2module.CartActivity">
 
     <ImageView
         android:id="@+id/imageView"

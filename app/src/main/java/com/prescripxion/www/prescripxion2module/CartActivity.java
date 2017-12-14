@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
 public class CartActivity extends AppCompatActivity {
@@ -17,11 +18,12 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView cartRecyclerView;
     private RecyclerView.Adapter cartAdapter;
     private RecyclerView.LayoutManager cartLayoutManager;
-    ArrayList<String> mArrayListData = new ArrayList<String>();
+
 
 
     ArrayList<Medicine> medicines;
-    TreeMap<String , Integer> addedToCartMap;
+    TreeMap<Medicine , Integer> addedToCartMap;
+    ArrayList<MyPair>  addedToCartArrayList = new ArrayList<MyPair>();
 
     String [] addedTo=new String[10];
 
@@ -39,26 +41,35 @@ public class CartActivity extends AppCompatActivity {
         Intent activityThatCalled = getIntent();
 
 
-        addedToCartMap = new TreeMap<String, Integer> ((HashMap<String , Integer>) activityThatCalled.getSerializableExtra("currentCartSelection"));
+        addedToCartMap = new TreeMap<Medicine, Integer> ((HashMap<Medicine , Integer>) activityThatCalled.getSerializableExtra("currentCartSelection"));
 
 
 
 
 
-
-        for(String s: MainActivity.addedToCart)
+        for(Map.Entry<Medicine , Integer> entry : addedToCartMap.entrySet())
         {
-            if(s!= null)
-            {
-                mArrayListData.add(s);
-            }
+            MyPair temp = new MyPair(entry.getKey(), entry.getValue());
+
+
+
+
+            addedToCartArrayList.add(temp);
 
         }
 
 
 
 
-        cartAdapter = new MyAdapter(mArrayListData);
+
+
+
+        cartAdapter = new CartAdapter(this, addedToCartArrayList, new ClickListener() {
+            @Override
+            public void onPositionClicked(int position) {
+
+            }
+        });
 
         cartRecyclerView.setAdapter(cartAdapter);
 

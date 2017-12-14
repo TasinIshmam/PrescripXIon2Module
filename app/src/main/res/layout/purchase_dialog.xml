@@ -23,22 +23,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/dialog_amount_editText"
-        android:layout_width="70dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:inputType="number"
-        android:text="0"
-        android:textAlignment="center"
-
+        android:id="@+id/fragment_amount_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dialog_amount_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/dialog_amount_textView"
+
+    android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+1"
+            android:id="@+id/dialog_add"/>
+
+        <EditText
+            android:id="@+id/dialog_amount_editText"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:inputType="number"
+            android:text="0"
+            android:textAlignment="center"/>
+
+
+        <Button
+            android:id="@+id/dialog_subtract"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-1" />
+
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/fragment_buttons_layout"
@@ -46,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/dialog_amount_editText"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_amount_layout"
         tools:layout_editor_absoluteX="0dp">
 
         <Button
@@ -67,6 +89,7 @@
             android:text="Cancel"
             tools:layout_editor_absoluteX="108dp"
             tools:layout_editor_absoluteY="85dp" />
+
     </LinearLayout>
 
 

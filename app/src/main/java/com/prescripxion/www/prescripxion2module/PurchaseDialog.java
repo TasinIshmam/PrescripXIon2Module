@@ -16,7 +16,7 @@ import android.widget.EditText;
 public class PurchaseDialog extends DialogFragment implements View.OnClickListener {
 
 
-    Button cancel, confirm;
+    Button cancel, confirm, add, subtract;
     EditText amount;
 
 
@@ -30,6 +30,22 @@ public class PurchaseDialog extends DialogFragment implements View.OnClickListen
             ((FragmentDataTransferInterface)getActivity()).onPurchaseConfirm( amount.getText().toString());
             dismiss();
         }
+        else if(view.getId() == R.id.dialog_add){
+            int temp = Integer.parseInt(amount.getText().toString());
+            temp++;
+            amount.setText(Integer.toString(temp));
+
+        }
+
+        else if(view.getId() == R.id.dialog_add){
+            int temp = Integer.parseInt(amount.getText().toString());
+
+            if(temp > 0) {
+                temp--;
+                amount.setText(Integer.toString(temp));
+            }
+
+        }
     }
 
 
@@ -42,6 +58,9 @@ public class PurchaseDialog extends DialogFragment implements View.OnClickListen
         cancel = (Button) view.findViewById(R.id.dialog_cancel_button);
         confirm = (Button) view.findViewById(R.id.dialog_confirm_buttom);
         amount = (EditText) view.findViewById(R.id.dialog_amount_editText);
+
+        add = (Button) view.findViewById(R.id.dialog_add);
+        subtract = (Button) view.findViewById(R.id.dialog_subtract);
 
 
 

@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.TreeMap;
 
 import jxl.Cell;
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements DataTransferInter
         mRecyclerView.setLayoutManager(mLayoutManager);
 
 
-
+        Collections.sort(medicines);
 
 
         mAdapter = new MyMainAdapter(this, medicines, this ,  new ClickListener() {
@@ -171,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements DataTransferInter
                 Intent intentCart = new Intent(MainActivity.this, CartActivity.class);
                 final int result = 1;
 
-                
+
                 intentCart.putExtra("currentCartSelection" , currentCartSelection);
 
                 startActivityForResult(intentCart, result);
