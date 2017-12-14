@@ -19,38 +19,37 @@ import android.widget.Toast;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 
-//For Excel Reading
-//For Card View
+
 
 
 
 public class MainActivity extends AppCompatActivity implements DataTransferInterface, PurchaseDialog.FragmentDataTransferInterface {
 
 
-    //CardView Codes:
+
     Button buttonCart;
-    ///Declaration Of Recycler Variables;
     private RecyclerView mRecyclerView;
     public MyMainAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<String> mItems;
     private  ArrayList<Medicine> currentFilteredState;
+    TreeMap<Medicine, Integer > currentCartSelection =new TreeMap<Medicine, Integer> ();
+    //public Medicine[] medicines = new Medicine[NUMBER_OF_MEDICINES];
+    ArrayList<Medicine> medicines = new ArrayList<Medicine>();
+    public static ArrayList<String> addedToCart = new ArrayList<String>();
+    Medicine lastConfirmedOnCart;
     SearchView searchView;
     MenuItem cartmenu, cameramenu;
-
-
-    //Declaration of Medicine Variables:
     public static final int NUMBER_OF_MEDICINES=11;
 
-    public Medicine[] medicines = new Medicine[NUMBER_OF_MEDICINES];
-    public static ArrayList<String> addedToCart = new ArrayList<String>();
     int a = 3;
-    ArrayList<Medicine> mArrayListData = new ArrayList<Medicine>();
+
     View view;
 
 
@@ -84,18 +83,13 @@ public class MainActivity extends AppCompatActivity implements DataTransferInter
 
 
 
-        for( Medicine e : medicines)
-        {
-            if(e != null)
-            {
-                mArrayListData.add(e);
-            }
-        }
-        mAdapter = new MyMainAdapter(this, mArrayListData, this ,  new ClickListener() {
+
+        mAdapter = new MyMainAdapter(this, medicines, this ,  new ClickListener() {
             @Override
             public void onPositionClicked(int position) {
 
 
+                lastConfirmedOnCart = currentFilteredState.get(position);
                 FragmentManager manager = getFragmentManager();
                 PurchaseDialog purchaseDialog = new PurchaseDialog();
 
@@ -175,7 +169,12 @@ public class MainActivity extends AppCompatActivity implements DataTransferInter
         {
             case R.id.button_checkout:{
                 Intent intentCart = new Intent(MainActivity.this, CartActivity.class);
-                startActivity(intentCart);
+                final int result = 1;
+
+                
+                intentCart.putExtra("currentCartSelection" , currentCartSelection);
+
+                startActivityForResult(intentCart, result);
             }
 
             case R.id.button_camera: {
@@ -222,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements DataTransferInter
                Medicine temp = new Medicine(name, details, price);
 
 
-               medicines[r] = temp;
+               medicines.add(temp);
 
 
 
@@ -272,7 +271,22 @@ public class MainActivity extends AppCompatActivity implements DataTransferInter
 
     @Override
     public void onPurchaseConfirm(String message) {
-        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
 
+        int amountPurchased = Integer.parseInt(message);
+
+        if(amountPurchased > 0) {
+
+            int previousAmount = 0;
+
+            if(currentCartSelection.get(lastConfirmedOnCart) != null)
+            {
+                previousAmount = currentCartSelection.get(lastConfirmedOnCart);
+            }
+
+
+            currentCartSelection.put(lastConfirmedOnCart, amountPurchased + previousAmount);
+
+            Toast.makeText(getApplicationContext(), message + " of " + lastConfirmedOnCart.getName() + " added to cart", Toast.LENGTH_SHORT).show();
+        }
     }
 }
