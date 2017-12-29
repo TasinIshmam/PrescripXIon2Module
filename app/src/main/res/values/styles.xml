@@ -3,15 +3,35 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#ef5353</item>
+        <!--<item name="colorPrimary">#ef5353</item>
         <item name="colorPrimaryDark">#000000</item>
-        <item name="colorAccent">#ff9b6d</item>
+        <item name="colorAccent">#ff9b6d</item>-->
+
+        <item name="colorPrimary">@color/colorIndigo</item>
+        <item name="colorPrimaryDark">@color/colorDeepIndigo</item>
+        <item name="colorAccent">@color/colorIndigo</item>
 
 
 
 
 
     </style>
+
+    <!-- Base application theme. -->
+    <style name="loginAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorIndigo</item>
+        <item name="colorPrimaryDark">@color/colorIndigo</item>
+        <item name="colorAccent">@color/colorIndigo</item>
+    </style>
+
+    <style name="signupAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorGrey</item>
+        <item name="colorPrimaryDark">@color/colorGrey</item>
+        <item name="colorAccent">@color/colorGrey</item>
+    </style>
+
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

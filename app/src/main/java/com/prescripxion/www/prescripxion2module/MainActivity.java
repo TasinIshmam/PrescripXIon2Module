@@ -189,7 +189,12 @@ public class MainActivity extends AppCompatActivity implements DataTransferInter
             }
 
             case R.id.button_camera: {
-                //add camera actiivity creation code here.
+                Intent intentCamera = new Intent(MainActivity.this, CameraActivity.class);
+
+                startActivity(intentCamera);
+
+
+
             }
 
 
