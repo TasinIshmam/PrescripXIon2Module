@@ -51,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent signup_page = new Intent(getApplicationContext(),Signup_form_one.class);
                 startActivity(signup_page);
                 finish();
+                
             }
 
         });
