@@ -186,12 +186,16 @@ public class MainActivity extends AppCompatActivity implements DataTransferInter
                 intentCart.putExtra("currentCartSelection" , currentCartSelection);
 
                 startActivityForResult(intentCart, result);
+
+                break;
             }
 
             case R.id.button_camera: {
                 Intent intentCamera = new Intent(MainActivity.this, CameraActivity.class);
 
                 startActivity(intentCamera);
+
+                break;
 
 
 
@@ -228,11 +232,19 @@ public class MainActivity extends AppCompatActivity implements DataTransferInter
 
                 Cell temp1=s.getCell(0,r);
                 Cell temp2=s.getCell(1,r);
-                Cell temp3=s.getCell(2,r);
+
 
                String name = temp1.getContents();
                String details = temp2.getContents();
+               if(details == null || details.equals(""))
+                   continue;
+
+
+                   Cell temp3=s.getCell(2,r);
+
                Double price = Double.parseDouble(temp3.getContents());
+
+
 
                Medicine temp = new Medicine(name, details, price);
 
