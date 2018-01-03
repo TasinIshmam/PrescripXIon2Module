@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements DataTransferInter
             Workbook workbook = Workbook.getWorkbook(is);
             Sheet s=workbook.getSheet(0);
             int row= s.getRows();
-            int col= s.getColumns();
+            
 
             for(int r = 0; r < row; r++)
             {
