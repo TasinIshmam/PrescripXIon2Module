@@ -232,24 +232,26 @@ public class MainActivity extends AppCompatActivity implements DataTransferInter
 
                 Cell temp1=s.getCell(0,r);
                 Cell temp2=s.getCell(1,r);
-
+                Cell temp3=s.getCell(2,r);
 
                String name = temp1.getContents();
                String details = temp2.getContents();
-               if(details == null || details.equals(""))
-                   continue;
+               String  priceString=temp3.getContents().trim();
+
+               if(details == null || details.equals("")) continue;
+
+                try {
+                    Double price = Double.parseDouble(priceString);
+                    Medicine temp = new Medicine(name, details, price);
+                    medicines.add(temp);
+                }
+                catch (NumberFormatException nfe){}
 
 
-                   Cell temp3=s.getCell(2,r);
-
-               Double price = Double.parseDouble(temp3.getContents());
 
 
 
-               Medicine temp = new Medicine(name, details, price);
 
-
-               medicines.add(temp);
 
 
 
@@ -260,7 +262,8 @@ public class MainActivity extends AppCompatActivity implements DataTransferInter
         }
         catch (Exception e)
         {
-            Toast.makeText(getApplicationContext(),"No Xls File",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"No Xls File" + e.toString(),Toast.LENGTH_LONG).show();
+
         }
     }
 
